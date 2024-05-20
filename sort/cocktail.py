@@ -11,20 +11,26 @@ def cocktail_sort(numbers: List[int]) -> List[int]:
     while swap:
         swap = False
         if reverse % 2 == 1:
+            # 逆順にしてバブルソート
+            # 小さいものを一番左に持っていく
             for i in range(end, start, -1):
                 if numbers[i] > numbers[i-1]:
                     continue
                 else:
                     numbers[i], numbers[i-1] = numbers[i-1], numbers[i]
                     swap = True
+            # 左に小さいものがくることが保証されているので，左端を一つ右にずらす
             start += 1
         else:
+            # 通常のバブルソート
+            # 大きいものを一番右に持っていく
             for i in range(start, end):
                 if numbers[i] <= numbers[i+1]:
                     continue
                 else:
                     numbers[i], numbers[i+1] = numbers[i+1], numbers[i]
                     swap = True
+            # 右に大きいものがくることが保証されているので，右端を一つ左にずらす
             end -= 1
         reverse += 1
     return numbers
